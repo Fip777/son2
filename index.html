@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Écoute sonore</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- PAGE ACCUEIL -->
+<section id="home" class="active">
+ <div class="container">
+
+		<h1>Choisissez un son</h1>
+
+  <div class="grid">
+  
+    <!-- Exemple de vignette -->
+    <div class="card"
+         data-sound="sounds/pluie.mp3"
+         data-name="Pluie"
+         data-image="images/pluie.jpg">
+      <img src="images/pluie.jpg" alt="Pluie">
+      <span>Pluie</span>
+    </div>
+	
+	<div class="card"
+         data-sound="sounds/pluie.mp3"
+         data-name="Pluie"
+         data-image="images/pluie.jpg">
+      <img src="images/pluie.jpg" alt="Pluie">
+      <span>Pluie</span>
+    </div>
+	
+	<div class="card"
+         data-sound="sounds/pluie.mp3"
+         data-name="Pluie"
+         data-image="images/pluie.jpg">
+      <img src="images/pluie.jpg" alt="Pluie">
+      <span>Pluie</span>
+    </div>
+	
+	<div class="card"
+         data-sound="sounds/pluie.mp3"
+         data-name="Pluie"
+         data-image="images/pluie.jpg">
+      <img src="images/pluie.jpg" alt="Pluie">
+      <span>Pluie</span>
+    </div>
+	
+	<div class="card"
+         data-sound="sounds/pluie.mp3"
+         data-name="Pluie"
+         data-image="images/pluie.jpg">
+      <img src="images/pluie.jpg" alt="Pluie">
+      <span>Pluie</span>
+    </div>
+	
+	<div class="card"
+         data-sound="sounds/pluie.mp3"
+         data-name="Pluie"
+         data-image="images/pluie.jpg">
+      <img src="images/pluie.jpg" alt="Pluie">
+      <span>Pluie</span>
+    </div>
+	
+	<div class="card"
+         data-sound="sounds/pluie.mp3"
+         data-name="Pluie"
+         data-image="images/pluie.jpg">
+      <img src="images/pluie.jpg" alt="Pluie">
+      <span>Pluie</span>
+    </div>
+	
+	<div class="card"
+         data-sound="sounds/pluie.mp3"
+         data-name="Pluie"
+         data-image="images/pluie.jpg">
+      <img src="images/pluie.jpg" alt="Pluie">
+      <span>Pluie</span>
+    </div>
+	
+	<div class="card"
+         data-sound="sounds/pluie.mp3"
+         data-name="Pluie"
+         data-image="images/pluie.jpg">
+      <img src="images/pluie.jpg" alt="Pluie">
+      <span>Pluie</span>
+    </div>
+	
+	<div class="card"
+         data-sound="sounds/pluie.mp3"
+         data-name="Pluie"
+         data-image="images/pluie.jpg">
+      <img src="images/pluie.jpg" alt="Pluie">
+      <span>Pluie</span>
+    </div>
+	
+	<div class="card"
+         data-sound="sounds/pluie.mp3"
+         data-name="Pluie"
+         data-image="images/pluie.jpg">
+      <img src="images/pluie.jpg" alt="Pluie">
+      <span>Pluie</span>
+    </div>
+	
+	<div class="card"
+         data-sound="sounds/pluie.mp3"
+         data-name="Pluie"
+         data-image="images/pluie.jpg">
+      <img src="images/pluie.jpg" alt="Pluie">
+      <span>Pluie</span>
+    </div>
+   
+  </div>
+
+  <!-- Slider durée -->
+  <div class="duration-container">
+    <input
+      type="range"
+      id="duration"
+      min="1"
+      max="30"
+      step="1"
+      value="10"
+    >
+
+    <div class="duration-box">
+      <span id="durationValue">10</span>
+      <small>Min.</small>
+    </div>
+  </div>
+
+  <!-- Bouton play -->
+  <button id="startBtn" class="play-btn">
+    ▶
+  </button>
+  
+ </div>
+</section>
+
+
+  <!-- PAGE LECTURE -->
+<section id="player">
+ <div class="container">
+ 
+  <img id="playerImage" alt="">
+
+  <h2 id="playerTitle"></h2>
+
+  <div class="progress">
+    <span id="currentTime">0:00</span>
+
+    <input
+      type="range"
+      id="progressBar"
+      min="0"
+      value="0"
+      step="1"
+    >
+
+    <span id="remainingTime">-0:00</span>
+  </div>
+
+  <button id="togglePlay" class="play-btn">
+    ▶
+  </button>
+
+  <button id="stopBtn" class="stop-btn hidden">
+    Terminer
+  </button>
+
+ </div>
+</section>
+
+  <audio id="audio"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
