@@ -1,3 +1,6 @@
+/* =========================
+   SÉLECTION DES ÉLÉMENTS
+========================= */
 const cards = document.querySelectorAll('.card');
 const audio = document.getElementById('audio');
 
@@ -18,6 +21,9 @@ const progressBar = document.getElementById('progressBar');
 const currentTimeEl = document.getElementById('currentTime');
 const remainingTimeEl = document.getElementById('remainingTime');
 
+/* =========================
+   VARIABLES GLOBALES
+========================= */
 let selectedSound = null;
 let selectedImage = null;
 let selectedName = null;
@@ -26,17 +32,21 @@ let totalDurationMs = 0;
 let elapsedMs = 0;
 let timer = null;
 let isPaused = false;
+let previewTimeout = null;
 
-/* ===== SLIDER ===== */
+/* =========================
+   SLIDER DURÉE
+========================= */
 durationValue.textContent = durationSlider.value;
 durationSlider.addEventListener('input', () => {
   durationValue.textContent = durationSlider.value;
 });
 
-/* ===== SÉLECTION + PRÉ-ÉCOUTE ===== */
+/* =========================
+   SÉLECTION + PRÉ-ÉCOUTE
+========================= */
 cards.forEach(card => {
   card.addEventListener('click', () => {
-
     if (player.classList.contains('active')) return;
 
     cards.forEach(c => c.classList.remove('selected'));
@@ -46,23 +56,34 @@ cards.forEach(card => {
     selectedImage = card.dataset.image;
     selectedName = card.dataset.name;
 
+    if (previewTimeout) clearTimeout(previewTimeout);
+
     audio.pause();
     audio.currentTime = 0;
-
     audio.src = selectedSound;
     audio.play();
 
-    setTimeout(() => {
+    previewTimeout = setTimeout(() => {
       audio.pause();
       audio.currentTime = 0;
+      previewTimeout = null;
     }, 3000);
   });
 });
 
-
-/* ===== LANCEMENT ===== */
+/* =========================
+   LANCEMENT LECTURE
+========================= */
 startBtn.addEventListener('click', () => {
-  if (!selectedSound) return alert("Sélectionnez un son");
+  if (!selectedSound) {
+    alert("Sélectionnez un son");
+    return;
+  }
+
+  if (previewTimeout) clearTimeout(previewTimeout);
+
+  audio.pause();
+  audio.currentTime = 0;
 
   totalDurationMs = durationSlider.value * 60 * 1000;
   elapsedMs = 0;
@@ -78,8 +99,9 @@ startBtn.addEventListener('click', () => {
   audio.loop = true;
   audio.play();
 
-  togglePlay.textContent = "⏸";
-  stopBtn.classList.add('hidden');
+  togglePlay.classList.remove('play');
+  togglePlay.classList.add('pause');
+  stopBtn.classList.remove('visible');
 
   home.classList.remove('active');
   player.classList.add('active');
@@ -87,7 +109,9 @@ startBtn.addEventListener('click', () => {
   startTimer();
 });
 
-/* ===== TIMER GLOBAL ===== */
+/* =========================
+   TIMER GLOBAL
+========================= */
 function startTimer() {
   clearInterval(timer);
 
@@ -105,7 +129,9 @@ function startTimer() {
   }, 1000);
 }
 
-/* ===== UI ===== */
+/* =========================
+   UI : BARRE DE LECTURE
+========================= */
 function updateUI() {
   const elapsedSec = Math.floor(elapsedMs / 1000);
   const remainingSec = Math.ceil((totalDurationMs - elapsedMs) / 1000);
@@ -115,22 +141,28 @@ function updateUI() {
   remainingTimeEl.textContent = "-" + formatTime(remainingSec);
 }
 
-/* ===== PLAY / PAUSE ===== */
+/* =========================
+   PLAY / PAUSE
+========================= */
 togglePlay.addEventListener('click', () => {
+  isPaused = !isPaused;
+
   if (isPaused) {
-    audio.play();
-    isPaused = false;
-    togglePlay.textContent = "⏸";
-    stopBtn.classList.add('hidden');
-  } else {
     audio.pause();
-    isPaused = true;
-    togglePlay.textContent = "▶";
-    stopBtn.classList.remove('hidden');
+    togglePlay.classList.remove('pause');
+    togglePlay.classList.add('play');
+    stopBtn.classList.add('visible');
+  } else {
+    audio.play();
+    togglePlay.classList.remove('play');
+    togglePlay.classList.add('pause');
+    stopBtn.classList.remove('visible');
   }
 });
 
-/* ===== TERMINER ===== */
+/* =========================
+   BOUTON TERMINER
+========================= */
 stopBtn.addEventListener('click', resetPlayer);
 
 function resetPlayer() {
@@ -142,13 +174,20 @@ function resetPlayer() {
   elapsedMs = 0;
   isPaused = false;
 
+  stopBtn.classList.remove('visible');
+
   player.classList.remove('active');
   home.classList.add('active');
+
+  togglePlay.classList.remove('play');
+  togglePlay.classList.add('pause');
 }
 
-/* ===== FORMAT ===== */
+/* =========================
+   FORMATAGE DU TEMPS
+========================= */
 function formatTime(seconds) {
   const min = Math.floor(seconds / 60);
-  const sec = Math.floor(seconds % 60).toString().padStart(2, '0');
+  const sec = String(seconds % 60).padStart(2, '0');
   return `${min}:${sec}`;
 }
