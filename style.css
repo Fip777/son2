@@ -9,27 +9,34 @@
 
 html {
   font-size: 16px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
+
   font-family: Arial, sans-serif;
   background: var(--bg-color);
   color: var(--text-color);
   text-align: center;
 }
 
+
 /* =========================
    SECTIONS & CENTRAGE
 ========================= */
 section {
+  min-height: 100dvh;
   display: none;
-  padding: 30px 20px;
+  justify-content: center;
 }
 
 section.active {
-  display: block;
+  display: flex;
 }
 
 .container {
@@ -37,6 +44,10 @@ section.active {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
 /* =========================
@@ -50,6 +61,31 @@ span, p {
   font-size: clamp(0.9rem, 3vw, 1.1rem);
 }
 
+
+
+/* =========================
+   PAGE ACCUEIL SCROLLABLE
+========================= */
+
+/* le container reste en colonne */
+#home .container {
+  height: 100vh;
+  overflow: hidden; /* empêche le scroll global */
+}
+
+/* zone scrollable */
+.home-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 30px;
+
+  /* inertie iOS */
+  -webkit-overflow-scrolling: touch;
+}
+#home h1 {
+  margin-bottom: 12px;
+}
+
 /* =========================
    GRID VIGNETTES
 ========================= */
@@ -57,9 +93,9 @@ span, p {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  max-width: 420px;
-  margin: 0 auto;
+  justify-content: center;
 }
+
 
 @media (max-width: 360px) {
   .grid {
@@ -68,9 +104,11 @@ span, p {
 }
 
 .card {
-  cursor: pointer;
-  transition: opacity 0.2s;
+  width: 100%;
+  max-width: 120px;
+  margin: 0 auto;
 }
+
 
 .card img {
   width: 100%;
@@ -78,6 +116,7 @@ span, p {
   object-fit: cover;
   border-radius: var(--radius);
 }
+
 
 .card span {
   display: block;
@@ -101,7 +140,8 @@ span, p {
 }
 
 #duration {
-  width: min(80vw, 280px);
+  width: 100%;
+  max-width: 240px;
 }
 
 .duration-box {
@@ -127,17 +167,64 @@ span, p {
 ========================= */
 .play-btn {
   margin: 20px auto;
-  width: 64px;
-  height: 64px;
+  position: relative;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   border: none;
-  background: #fff;
-  font-size: 26px;
-  color: #444;
+  background: white;
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
   cursor: pointer;
+  padding: 0;
   display: block;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  background-clip: padding-box;
+  font-size: 0;
+  color: transparent;
 }
+
+/* RESET mobile */
+.play-btn::before,
+.play-btn::after {
+  content: "";
+  position: absolute;
+  background: #444;
+}
+
+/* PLAY */
+.play-btn.play::before {
+  width: 0;
+  height: 0;
+  border-left: 18px solid #444;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  background: transparent;
+  left: 50%;
+  top: 50%;
+  transform: translate(-45%, -50%);
+}
+
+/* PAUSE */
+.play-btn.pause::before,
+.play-btn.pause::after {
+  width: 6px;
+  height: 26px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.play-btn.pause::before {
+  left: 28px;
+}
+
+.play-btn.pause::after {
+  right: 28px;
+}
+
 
 /* =========================
    PLAYER – BARRE DE TEMPS
@@ -171,6 +258,15 @@ span, p {
 /* =========================
    BOUTON TERMINER
 ========================= */
+.stop-slot {
+  height: 50px;          /* hauteur fixe du bouton */
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .stop-btn {
   margin: 10px auto;
   padding: 10px 30px;
@@ -181,6 +277,19 @@ span, p {
   font-size: 0.9rem;
   box-shadow: 0 6px 15px rgba(0,0,0,0.3);
   cursor: pointer;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* bouton visible */
+.stop-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 /* =========================
