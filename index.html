@@ -14,9 +14,10 @@
 
 		<h1>Choisissez un son</h1>
 
+<div class="home-scroll">
   <div class="grid">
   
-    <!-- Exemple de vignette -->
+    <!-- Vignettes -->
     <div class="card"
          data-sound="sounds/pluie.mp3"
          data-name="Pluie"
@@ -133,10 +134,9 @@
   </div>
 
   <!-- Bouton play -->
-  <button id="startBtn" class="play-btn">
-    ▶
-  </button>
+  <button id="startBtn" class="play-btn play"></button>
   
+ </div>
  </div>
 </section>
 
@@ -161,17 +161,18 @@
     >
 
     <span id="remainingTime">-0:00</span>
-  </div>
+</div>
 
-  <button id="togglePlay" class="play-btn">
-    ▶
-  </button>
+<button id="togglePlay" class="play-btn pause"></button>
 
-  <button id="stopBtn" class="stop-btn hidden">
+<div class="stop-slot">
+  <button id="stopBtn" class="stop-btn">
     Terminer
   </button>
+</div>
 
- </div>
+</div>
+
 </section>
 
   <audio id="audio"></audio>
