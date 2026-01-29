@@ -99,7 +99,7 @@ span, p {
 
 @media (max-width: 360px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -298,3 +298,4 @@ span, p {
 .hidden {
   display: none;
 }
+
