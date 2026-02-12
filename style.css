@@ -62,44 +62,28 @@ span, p {
 }
 
 
+
 /* =========================
-   ACCUEIL – LAYOUT FIXE
+   PAGE ACCUEIL SCROLLABLE
 ========================= */
 
+/* le container reste en colonne */
 #home .container {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden; /* interdit le scroll page */
+  overflow: hidden; /* empêche le scroll global */
 }
 
-/* Titre toujours visible */
-#home h1 {
-  flex-shrink: 0;
-}
-
-/* =========================
-   VIGNETTES SCROLLABLES
-========================= */
-
-.cards-scroll {
+/* zone scrollable */
+.home-scroll {
   flex: 1;
   overflow-y: auto;
-  padding-bottom: 12px;
+  padding-bottom: 30px;
 
+  /* inertie iOS */
   -webkit-overflow-scrolling: touch;
 }
-
-/* =========================
-   SLIDER + PLAY FIXES
-========================= */
-
-.home-bottom {
-  flex-shrink: 0;
-  padding-top: 10px;
-  padding-bottom: env(safe-area-inset-bottom);
-
-  background: var(--bg-color, #fff);
+#home h1 {
+  margin-bottom: 12px;
 }
 
 /* =========================
@@ -314,5 +298,3 @@ span, p {
 .hidden {
   display: none;
 }
-
-
