@@ -48,6 +48,7 @@ section.active {
   margin: 0 auto;
   padding: 0 16px;
   box-sizing: border-box;
+  padding-bottom: calc(80px + env(safe-area-inset-bottom)) /* évite zone système mobile */
 }
 
 /* =========================
@@ -298,3 +299,4 @@ span, p {
 .hidden {
   display: none;
 }
+
