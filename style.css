@@ -83,7 +83,7 @@ span, p {
   -webkit-overflow-scrolling: touch;
 }
 #home h1 {
-  margin-bottom: 12px;
+  margin-bottom: 12px; /* espace bas de titre */
 }
 
 /* =========================
@@ -94,6 +94,9 @@ span, p {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   justify-content: center;
+  padding: 0 20px; /* espace côtés externes */
+  padding-top: 20px; /* espace entre titre et vignettes */
+  padding-bottom: 20px; /* espace bas vignettes */
 }
 
 
@@ -137,6 +140,7 @@ span, p {
   align-items: center;
   justify-content: center;
   gap: 15px;
+  padding: 0 40px; /* espace côtés zone temps */
 }
 
 #duration {
@@ -298,5 +302,6 @@ span, p {
 .hidden {
   display: none;
 }
+
 
 
