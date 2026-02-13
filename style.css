@@ -48,8 +48,7 @@ section.active {
   margin: 0 auto;
   padding: 0 16px;
   box-sizing: border-box;
-  padding-bottom: calc(80px + env(safe-area-inset-bottom)) /* évite zone système mobile */
-}
+  }
 
 /* =========================
    TYPOGRAPHIE RESPONSIVE
@@ -78,7 +77,7 @@ span, p {
 .home-scroll {
   flex: 1;
   overflow-y: auto;
-  padding-bottom: 30px;
+  padding-bottom: 90px; /* espace bas de page */
 
   /* inertie iOS */
   -webkit-overflow-scrolling: touch;
@@ -299,4 +298,5 @@ span, p {
 .hidden {
   display: none;
 }
+
 
