@@ -92,11 +92,11 @@ span, p {
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 10px;
   justify-content: center;
   padding: 0 20px; /* espace côtés externes */
-  padding-top: 20px; /* espace entre titre et vignettes */
-  padding-bottom: 20px; /* espace bas vignettes */
+  padding-top: 10px; /* espace entre titre et vignettes */
+  padding-bottom: 15px; /* espace bas vignettes */
 }
 
 
@@ -302,6 +302,7 @@ span, p {
 .hidden {
   display: none;
 }
+
 
 
 
