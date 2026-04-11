@@ -25,6 +25,38 @@ body {
   text-align: center;
 }
 
+/*==== BARRE HAUT DE PAGE ====*/
+
+.top-bar {
+    display: flex;                 /* aligne les éléments horizontalement */
+    align-items: center;           /* centre verticalement */
+    justify-content: center;       /* centre horizontalement le contenu */
+    padding: 20px;            	  /* gauche/droite */
+	Padding-top: 15px;     		  /* espace haut*/
+	Padding-bottom: 5px;		  /* espace bas*/
+    gap: 10px; 
+}
+
+/* Lignes gauche et droite */
+.top-bar .line {
+    flex: 1;                       
+    height: 1px;                   /* épaisseur de la ligne */
+    background-color: #0d2a5c;     /* couleur du trait */
+}
+
+/* Lien central */
+.top-link {
+    text-decoration: none;         /* enlève soulignement */
+    color: #0d2a5c;                /* couleur texte */
+    font-weight: standard;         /* texte non gras */    
+    white-space: nowrap;           /* empêche retour à la ligne */
+    transition: 0.3s;
+}
+
+/* Effet au survol */
+.top-link:hover {
+    color: #0077cc;                /* couleur au survol */
+}
 
 /* =========================
    SECTIONS & CENTRAGE
@@ -77,7 +109,7 @@ span, p {
 .home-scroll {
   flex: 1;
   overflow-y: auto;
-  padding-bottom: 90px; /* espace bas de page */
+  padding-bottom: 20vh; /* espace bas de page */
 
   /* inertie iOS */
   -webkit-overflow-scrolling: touch;
@@ -97,14 +129,15 @@ span, p {
   padding: 0 20px; /* espace côtés externes */
   padding-top: 10px; /* espace entre titre et vignettes */
   padding-bottom: 15px; /* espace bas vignettes */
-}
-
+ }
+ 
 
 @media (max-width: 360px) {
   .grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
 
 .card {
   width: 100%;
@@ -118,6 +151,7 @@ span, p {
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: var(--radius);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);  /* ombre autour images */
 }
 
 
@@ -196,14 +230,14 @@ span, p {
 .play-btn::after {
   content: "";
   position: absolute;
-  background: #444;
+  background: #0d2a5c;/* couleur bouton play/pause */
 }
 
 /* PLAY */
 .play-btn.play::before {
   width: 0;
   height: 0;
-  border-left: 18px solid #444;
+  border-left: 18px solid #0d2a5c; /* couleur bouton play */
   border-top: 12px solid transparent;
   border-bottom: 12px solid transparent;
   background: transparent;
@@ -240,7 +274,7 @@ span, p {
   gap: 10px;
 
   max-width: min(90vw, 400px);
-  margin: 0 auto 20px;
+  margin: 0 auto 0px;
 }
 
 /* =========================
@@ -253,10 +287,22 @@ span, p {
   border-radius: 20px;
   margin: 20px auto;
   display: block;
+  margin-bottom: 50px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);  /* ombre autour image */
+}
+
+@media(max-height: 650px){
+#player img {
+  width: min(40vw, 220px);
+  margin-bottom: 0px;
+  }
+#player h2 {
+  margin-bottom: 30px; /* espace sous titre musique */
+}
 }
 
 #player h2 {
-  margin-bottom: 20px;
+  margin-bottom: 50px; /* espace sous titre musique */
 }
 
 /* =========================
@@ -276,7 +322,7 @@ span, p {
   padding: 10px 30px;
   border-radius: 20px;
   border: none;
-  background: #000;
+  background: #0d2a5c; /* couleur bouton terminer */
   color: #fff;
   font-size: 0.9rem;
   box-shadow: 0 6px 15px rgba(0,0,0,0.3);
@@ -302,7 +348,3 @@ span, p {
 .hidden {
   display: none;
 }
-
-
-
-
