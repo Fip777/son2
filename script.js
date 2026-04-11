@@ -52,7 +52,16 @@ cards.forEach(card => {
     cards.forEach(c => c.classList.remove('selected'));
     card.classList.add('selected');
 
-    selectedSound = card.dataset.sound;
+// Gestion spéciale pour "Surprise"
+if (card.dataset.name === "Surprise") {
+
+  const randomNumber = Math.floor(Math.random() * 10) + 1;
+  selectedSound = `sounds/surprise${randomNumber}.mp3`;
+
+} else {
+
+  selectedSound = card.dataset.sound;
+}
     selectedImage = card.dataset.image;
     selectedName = card.dataset.name;
 
